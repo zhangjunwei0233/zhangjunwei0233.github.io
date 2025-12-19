@@ -1,11 +1,17 @@
 ---
-layout: cv
+layout: none
 permalink: /cv/
 title: cv
 nav: true
 nav_order: 5
-cv_pdf: example_pdf.pdf # you can also use external links here
-description: This is a description of the page. You can modify it in '_pages/cv.md'. You can also change or remove the top pdf download button.
-toc:
-  sidebar: left
 ---
+
+<script>
+  // Auto-redirect to PDF
+  window.location.href = '/assets/pdf/my_cv.pdf';
+</script>
+
+<noscript>
+  <meta http-equiv="refresh" content="0; url=/assets/pdf/my_cv.pdf">
+  <p>Redirecting to CV PDF... <a href="/assets/pdf/my_cv.pdf">Click here if you are not redirected</a></p>
+</noscript>
