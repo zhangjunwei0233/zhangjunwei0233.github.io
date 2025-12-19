@@ -49,7 +49,7 @@ Beyond academics, I am passionate about classical music, 3D modeling, and explor
     - May 2025
 
 - <strong>First Class Academic Scholarship</strong> (University of Chinese Academy of Sciences)
-    - Octover 2024 and October 2025
+    - October 2024 and October 2025
 
 <strong>Let's Work Together</strong>
 I maintain a <a href="https://learning-guide.vercel.app/">learning website</a> that documents my roadmaps and cheatsheets on AI. I warmly welcome anyone interested in contributing to this project or collaborating on extending this initiative.
