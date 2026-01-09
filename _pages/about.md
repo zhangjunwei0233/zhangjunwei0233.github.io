@@ -28,7 +28,7 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hi! I am a third-year undergraduate majoring in Computer Science at <a href='https://www.ucas.acacns'>UCAS</a>, where I am fortunate to be advised by <a href='https://ofey.me/'>Prof. Fei Sun</a>.
+Hi! I am a third-year undergraduate majoring in Computer Science at <a href='https://www.ucas.ac.cn'>UCAS</a>, where I am fortunate to be advised by <a href='https://ofey.me/'>Prof. Fei Sun</a>.
 
 During my second year, I participated in the <a href='https://ysyx.oscc.cc/'>ysyx project</a> to explore my interests in computer architecture. This experience helped me realize that this field was not the right fit for me.
 Currently, I am a research beginner in the NLP field, advised by <a href='https://ofey.me/'>Prof. Fei Sun</a>, focusing on exploring hallucinations, memory, and knowledge mechanisms in LLMs.
@@ -52,4 +52,4 @@ Beyond academics, I am passionate about classical music, 3D modeling, and explor
     - October 2024 and October 2025
 
 <strong>Let's Work Together</strong>
-I maintain a <a href="https://learning-guide.vercel.app/">learning website</a> that documents my roadmaps and cheatsheets on AI. I warmly welcome anyone interested in contributing to this project or collaborating on extending this initiative.
+I maintain a <a href="https://zhangjunwei0233.github.io/LearningGuide/">learning website</a> that documents my roadmaps and cheatsheets on AI. I warmly welcome anyone interested in contributing to this project or collaborating on extending this initiative.
