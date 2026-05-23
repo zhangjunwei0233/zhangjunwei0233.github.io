@@ -394,6 +394,9 @@ ninja.data = [{
             },},{id: "news-this-website-is-launched",
           title: 'This website is launched! 🎉',
           description: "",
+          section: "News",},{id: "news-our-paper-basecal-unsupervised-confidence-calibration-via-base-model-signals-has-been-accepted-to-the-acl-2026-main-conference",
+          title: 'Our paper BaseCal: Unsupervised Confidence Calibration via Base Model Signals has been accepted...',
+          description: "",
           section: "News",},{id: "projects-project-1",
           title: 'project 1',
           description: "with background image",
@@ -452,6 +455,13 @@ ninja.data = [{
         section: 'Socials',
         handler: () => {
           window.open("https://github.com/zhangjunwei0233", "_blank");
+        },
+      },{
+        id: 'social-scholar',
+        title: 'Google Scholar',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://scholar.google.com/citations?user=e-9vd6YAAAAJ", "_blank");
         },
       },{
       id: 'light-theme',
