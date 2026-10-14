@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <strong>CS Undergrad</strong> at <a href='https://www.ucas.ac.cn/'>UCAS</a> | <strong>Exploring LLM Hallucinations & Memory</strong>
+subtitle: <strong>CS Undergraduate</strong> at <a href='https://www.ucas.ac.cn/'>UCAS</a> | <strong>Exploring Recursive Self-Improvement for AI</strong>
 
 profile:
   align: right
@@ -20,7 +20,7 @@ social: true # includes social icons at the bottom of the page
 announcements:
   enabled: true # includes a list of news items
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
+  limit: # leave blank to include all the news in the `_news` folder
 
 latest_posts:
   enabled: false
@@ -28,13 +28,13 @@ latest_posts:
   limit: 3 # leave blank to include all the blog posts
 ---
 
-Hi! I am a third-year undergraduate majoring in Computer Science at <a href='https://www.ucas.ac.cn'>UCAS</a>, where I am fortunate to be advised by <a href='https://ofey.me/'>Prof. Fei Sun</a>.
+Hi! I am a fourth-year undergraduate majoring in Computer Science at <a href='https://www.ucas.ac.cn'>UCAS</a>, where I am fortunate to be advised by <a href='https://ofey.me/'>Prof. Fei Sun</a>.
 
-During my second year, I participated in the <a href='https://ysyx.oscc.cc/'>ysyx project</a> to explore my interests in computer architecture. This experience helped me realize that this field was not the right fit for me.
-Currently, I am a research beginner in the NLP field, advised by <a href='https://ofey.me/'>Prof. Fei Sun</a>, focusing on exploring hallucinations, memory, and knowledge mechanisms in LLMs.
-Looking ahead, I plan to further explore the MLSys and HPC domains before settling on a specific research area to specialize in.
+My research interests lie in AI agents, particularly learning from experience and recursive self-improvement (RSI). My earlier work explored hallucinations and knowledge mechanisms in LLMs.
 
-Beyond academics, I am passionate about classical music, 3D modeling, and exploring new tools and applications on Linux/GitHub.
+During my second year, I explored chip design through the <a href='https://ysyx.oscc.cc/'>ysyx project</a>. That experience sparked a lasting interest in computing systems and infrastructure, including machine learning systems (MLSys) and high-performance computing (HPC).
+
+Beyond academics, I enjoy classical music, tinkering with Linux, and discovering new tools and projects on GitHub.
 
 <strong>📖 Education</strong>
 
@@ -43,13 +43,16 @@ Beyond academics, I am passionate about classical music, 3D modeling, and explor
 <strong>🥇 Honors and Awards</strong>
 
 - <strong>National Scholarship</strong> (Ministry of Education of P.R. China)
-    - November 2024 and October 2025
+
+  - November 2024 and October 2025
 
 - <strong>Finalist, Interdisciplinary Contest in Modeling</strong> (Consortium for Mathematics and its Applications)
-    - May 2025
+
+  - May 2025
 
 - <strong>First Class Academic Scholarship</strong> (University of Chinese Academy of Sciences)
-    - October 2024 and October 2025
+  - October 2024 and October 2025
 
 <strong>Let's Work Together</strong>
-I maintain a <a href="https://zhangjunwei0233.github.io/LearningGuide/">learning website</a> that documents my roadmaps and cheatsheets on AI. I warmly welcome anyone interested in contributing to this project or collaborating on extending this initiative.
+
+I maintain a <a href="https://zhangjunwei0233.github.io/LearningGuide/">learning website</a> where I share AI learning roadmaps and study notes. Contributions and ideas for collaboration are always welcome!
