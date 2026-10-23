@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="{{ theme_color }}">
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ social_title }}">
+  <meta property="og:description" content="{{ social_description }}">
+  {{ favicon }}
+  <link rel="stylesheet" href="template/style.css">
+  {{ theme }}
+  {{ styles }}
+  <script defer src="template/site.js"></script>
+  {{ scripts }}
+</head>
+<body>
+<a class="skip-link" href="{{ first_section }}">Skip to the story</a>
+<header class="site-header">
+  <a class="wordmark" href="#top">{{ name }}<span class="brand-dot" aria-hidden="true">.</span></a>
+  <nav aria-label="Page navigation">{{ navigation }}</nav>
+</header>
+<main id="top">
+  <div class="paper-heading">
+    <h1 class="title">{{ heading }}</h1>
+    {{ authors }}
+    {{ affiliations }}
+    {{ author_notes }}
+    {{ resources }}
+  </div>
+{{ content }}
+{{ citation }}
+{{ footer }}
+</main>
+</body>
+</html>

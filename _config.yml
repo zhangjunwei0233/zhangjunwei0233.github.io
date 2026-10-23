@@ -192,6 +192,11 @@ exclude:
   - purgecss.config.js
   - README.md
   - readme_preview/
+  - projects/taps/build.py
+  - projects/taps/template/page.html
+  - projects/taps/taps/page.json
+  - projects/taps/taps/content.html
+  - projects/taps/taps/citation.bib
   - vendor
 keep_files:
   - CNAME
@@ -318,6 +323,7 @@ filtered_bibtex_keywords:
     pdf,
     poster,
     preview,
+    project,
     selected,
     slides,
     supp,

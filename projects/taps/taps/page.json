@@ -1,0 +1,72 @@
+{
+  "title": "TAPS — Strong yet Controllable LLM Abstention",
+  "description": "Against a strong selector, abstention training’s edge comes mostly from answering better, while it fixes coverage. TAPS (train for accuracy, then select post hoc) is a strong baseline that stays controllable.",
+  "name": "TAPS",
+  "social_title": "Strong yet Controllable LLM Abstention without Learning to Abstain",
+  "social_description": "Train for accuracy, then select post hoc: a stronger baseline for learning to abstain.",
+  "favicon": "assets/images/favicon.svg",
+  "heading_html": "<span class=\"orange\"><strong>Strong</strong></span> yet <span class=\"blue\"><strong>Controllable</strong></span> LLM Abstention<br> without Learning to Abstain",
+  "authors_html": "Junwei Zhang<sup>1,2 *</sup>, Yifei Wang<sup>3 *</sup>, Wanli Yang<sup>1,2</sup>, Hexiang Tan<sup>1,2</sup>, Rui Tang<sup>2</sup>,<br class=\"desktop-break\"> Xin Chen, Jingang Wang, Du Su<sup>1</sup>, Fei Sun<sup>1 †</sup>",
+  "affiliations_html": "<sup>1</sup> State Key Laboratory of AI Safety, Institute of Computing Technology, CAS<br> <sup>2</sup> University of Chinese Academy of Sciences &nbsp; <sup>3</sup> Beijing Institute of Technology",
+  "author_notes_html": "* Equal contribution &nbsp; † Corresponding author",
+  "navigation": [
+    {
+      "id": "routes",
+      "label": "Motivation",
+      "compact_hide": true
+    },
+    {
+      "id": "finding",
+      "label": "Insight",
+      "compact_hide": true
+    },
+    {
+      "id": "taps",
+      "label": "TAPS"
+    },
+    {
+      "id": "results",
+      "label": "Results"
+    },
+    {
+      "id": "takeaway",
+      "label": "Takeaway"
+    }
+  ],
+  "resources": [
+    {
+      "label": "Paper",
+      "href": "https://arxiv.org/abs/2610.16318",
+      "icon": "book"
+    },
+    {
+      "label": "Poster",
+      "href": "assets/poster.pdf",
+      "icon": "poster"
+    },
+    {
+      "label": "BibTeX",
+      "href": "#citation",
+      "icon": "quote"
+    }
+  ],
+  "citation": "citation.bib",
+  "styles": [
+    "chart.css"
+  ],
+  "scripts": [
+    "curves.js",
+    "chart.js"
+  ],
+  "theme": {
+    "navy": "#102d44",
+    "hero-blue": "#A0D3F2",
+    "hero-orange": "#F2AD85",
+    "hero-purple": "#C4B5E8"
+  },
+  "footer": {
+    "note": "Train for accuracy. Select post hoc.",
+    "label": "© 2026 Junwei Zhang",
+    "url": "https://zhangjunwei0233.github.io"
+  }
+}

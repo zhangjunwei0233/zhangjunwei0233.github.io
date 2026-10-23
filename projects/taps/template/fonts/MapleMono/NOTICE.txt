@@ -1,0 +1,14 @@
+Copyright 2022 The Maple Mono Project Authors (https://github.com/subframe7536/maple-font)
+
+
+
+subframe7536
+
+https://github.com/subframe7536
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://openfontlicense.org
+
+https://openfontlicense.org
+
+Source: locally installed MapleMono-NF-CN-Regular.ttf.
+Subset: Latin and punctuation for BibTeX, generated with fontTools.

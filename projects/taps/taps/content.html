@@ -1,0 +1,120 @@
+  <div class="hero-banner" id="overview" aria-label="Research overview and interactive result preview">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-title">Just <span class="light-blue">select</span> on a <span class="light-orange">good answerer.</span></p>
+        <p class="hero-summary">Abstention mitigates hallucination by declining to answer. An LLM can abstain in two ways. <span class="light-blue"><em>Selective answering</em></span> checks each answer after it is written and withholds the doubtful ones, using a confidence threshold you can turn. <span class="light-purple"><em>Abstention training</em></span> teaches the model itself to say “I don’t know,” but fixes how conservatively it answers. This sacrifice of controllability can yield better performance. However, we find that, against a strong selector, its remaining edge comes mainly from answering better, not from rejecting better. So we propose <span class="light-orange"><strong>T</strong>rain for <strong>A</strong>ccuracy, then <strong>P</strong>ost-hoc <strong>S</strong>elect</span> (<strong><span class="light-orange">TAPS</span></strong>). At matched coverage, TAPS reaches lower mean risk than three representative abstention-training methods, and coverage stays adjustable. These results establish TAPS as a strong baseline and raise the bar for abstention training: internalizing the decision should yield more than post-hoc selection already delivers.</p>
+        <a class="story-link" href="#routes">Follow the story <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-result">
+        <div class="chart-topline"><span>Qwen3-8B · Natural Questions</span></div>
+        <div class="chart-legend"><span class="light-blue"><i class="line-key blue-key"></i>Selective answering (Probing)</span><span class="light-orange"><i class="line-key orange-key"></i>TAPS (Probing)</span><span class="light-purple"><i class="point-key"></i>Abstention training</span></div>
+        <div id="risk-chart" class="risk-chart">{{ include:assets/banner.svg }}</div>
+        <div class="coverage-control" hidden><output id="coverage-value" for="coverage">50.45%</output><input id="coverage" type="range" min="32" max="3138" step="1" value="1583" aria-label="Coverage"><div class="range-endpoints"><span>Abstain more</span><span>Answer more</span></div></div>
+        <div class="hero-readouts"><p><span>Selective answering</span><strong id="selective-risk">41.3<small>%</small></strong></p><p class="abstention-readout"><span>Abstention training</span><strong id="abstention-risk" title="TruthRL (0) at 50.45% coverage">37.3<small>%</small></strong></p><p class="taps-readout"><span>TAPS</span><strong id="taps-risk">33.3<small>%</small></strong></p></div>
+        <noscript><p class="no-js">At 50.45% coverage. Enable JavaScript to explore the curve.</p></noscript>
+      </div>
+    </div>
+  </div>
+
+  <section class="story-section" id="routes" aria-labelledby="routes-title">
+    <div class="prose container blog">
+      <p class="section-index">01 / TWO ROUTES</p>
+      <h2 id="routes-title">Where should the “I don’t know” decision live?</h2>
+      <p class="text">Declining to answer is a simple way to avoid a likely hallucination. The design question is who makes the call. <strong>Selective answering</strong> lets the model answer first; an external confidence estimator then keeps or withholds that answer. <strong>Abstention training</strong> teaches the model itself to output either an answer or a refusal such as “I don’t know.”</p>
+    </div>
+    <figure class="figure routes-figure">
+      <div class="route-panels" aria-label="Two routes to abstention">
+        <div class="route-panel route-internal"><a href="{{ assets }}/images/abstention-training.svg" aria-label="Enlarge the abstention training diagram"><img src="{{ assets }}/images/abstention-training.svg" alt="Abstention training jointly learns answering and rejection inside the model." width="283" height="527" loading="lazy"></a></div>
+        <div class="route-panel route-external"><a href="{{ assets }}/images/selective-answering.svg" aria-label="Enlarge the selective answering diagram"><img src="{{ assets }}/images/selective-answering.svg" alt="Selective answering generates an answer, then uses an external confidence estimator and adjustable threshold to accept or withhold it." width="451" height="527" loading="lazy"></a></div>
+      </div>
+      <figcaption><strong>Two paradigms to abstention.</strong> Abstention training learns answering and rejection together inside the model. Selective answering leaves the decision to an external selector.</figcaption>
+    </figure>
+  </section>
+
+  <section class="story-section" id="tradeoff" aria-labelledby="tradeoff-title">
+    <div class="prose container blog">
+      <p class="section-index">02 / THE TRADE-OFF</p>
+      <h2 id="tradeoff-title">Abstention training sacrifices controllability for performance.</h2>
+      <p class="text">Abstention trades quantity for quality. The standard risk–coverage formulation tracks quantity with <strong>coverage</strong>, the share of questions answered, and quality with <strong>risk</strong>, the error rate among those answers. A better method achieves lower risk at matched coverage (<strong>Risk@Cov</strong>). We compare TruthRL, a state-of-the-art abstention-training method, with selective answering.</p>
+    </div>
+    <div class="comparison-layout wide">
+      <figure class="comparison-figure"><a href="{{ assets }}/images/routes-risk-coverage.svg" aria-label="Enlarge the semantic entropy and TruthRL risk coverage comparison"><img src="{{ assets }}/images/routes-risk-coverage.svg" alt="Qwen3-8B on NQ. Selective answering uses semantic entropy and traces a risk coverage curve. Three TruthRL checkpoints with abstention rewards minus 0.5, 0 and plus 0.5 cluster between 46.37 and 50.45 percent coverage." width="680" height="425" loading="lazy"></a><figcaption>Qwen3-8B / NQ. Selective answering uses semantic entropy (S.E.). TruthRL achieves lower risk near its operating points, but three separately trained reward variants span only 4.08 percentage points of coverage.</figcaption></figure>
+      <div class="comparison-explanation container blog"><p class="text"><strong>Lower risk.</strong> At matched coverage, TruthRL beats its strong selective-answering counterpart.</p><p class="text"><strong>Less control.</strong> Selective answering changes coverage by turning a threshold. In contrast, a trained policy can only move by retraining, and even separate runs with different abstention rewards tend to cluster in a narrow coverage range.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="story-section finding-section" id="finding" aria-labelledby="finding-title">
+    <div class="prose container blog">
+      <p class="section-index">03 / THE KEY FINDING</p>
+      <h2 id="finding-title">The performance advantage comes from better answers, not better rejection.</h2>
+      <p class="text">We analyze where the advantage of abstention training comes from. At a fixed coverage, risk can fall in only two ways: the model <strong>answers better</strong> (fixing more answers than training breaks) or <strong>rejects better</strong> (withholding answers that would have been wrong). It is like grading a student who may skip questions on an exam: a higher score means they either learned more or skipped more wisely. We split risk exactly into these two parts: the net accuracy gain, <span class="math orange">G<sub>ans</sub></span>, and rejection precision, <span class="math blue">G<sub>dis</sub></span>, the share of withheld answers that would have been wrong.</p>
+    </div>
+    <figure class="figure wide-figure"><a href="{{ assets }}/images/sankey_comparison_demo.svg" aria-label="Enlarge the risk decomposition figure"><img src="{{ assets }}/images/sankey_comparison_demo.svg" alt="Paper Figure 1. Left: exact risk decomposition into normalized net accuracy gain and rejection precision. Right: on Qwen2.5-7B-Instruct and TriviaQA at 72.7 percent coverage, semantic entropy has 86.8 percent rejection precision and TruthRL 86.2 percent, while TruthRL gains 6.1 percent from answering and has 16.2 percent risk versus 22.1 percent." width="1500" height="500" loading="lazy"></a><figcaption><strong>Answering and rejecting are different skills.</strong> On Qwen2.5-7B-Instruct / TriviaQA at the same 72.7% coverage, semantic entropy (S.E.) and TruthRL reject with nearly the same precision (86.8% vs. 86.2%). TruthRL’s lower risk comes from its answering gain.</figcaption></figure>
+    <div class="prose container blog">
+      <p class="text">A stronger selector closes the <span class="blue">rejection gap</span> fast. Across nine model–dataset settings, mean rejection precision of selective answering rises from 59.47% with Vanilla confidence to 74.84% with P(True) and <strong>84.64%</strong> with semantic entropy, essentially level with TruthRL’s <strong>84.29%</strong>. TruthRL’s <span class="orange">answering gain</span>, meanwhile, is positive in every single setting. Despite its name, then, what sets abstention training apart from strong selective answering is mostly <em>how well it answers</em>, rather than how well it abstains.</p>
+      <p class="bridge">What if selective answering had an equally strong answerer?</p>
+    </div>
+  </section>
+
+  <section class="story-section method-section" id="taps" aria-labelledby="taps-title">
+    <div class="prose container blog"><p class="section-index">04 / THE RECIPE</p><h2 id="taps-title">So: Train for Accuracy, then Post-hoc Select (TAPS).</h2><p class="text"><strong>TAPS</strong> (<strong>T</strong>rain for <strong>A</strong>ccuracy, then <strong>P</strong>ost-hoc <strong>S</strong>elect) enhances selective answering by strengthening the answerer, then leaves the abstention decision to the external estimator.</p></div>
+    <div class="method-layout wide">
+      <figure class="method-figure method-comparison"><div class="method-panels">
+        <a href="{{ assets }}/images/selective-answering.svg" aria-label="Enlarge the selective answering diagram"><img src="{{ assets }}/images/selective-answering.svg" alt="Selective answering: a starting LLM answers, then an external confidence estimator and threshold decide whether to abstain." width="451" height="527" loading="lazy"></a>
+        <a href="{{ assets }}/images/taps-method.svg" aria-label="Enlarge the TAPS diagram"><img src="{{ assets }}/images/taps-method.svg" alt="TAPS keeps the same external selection mechanism, but trains the LLM for answer accuracy first and adopts a strong confidence estimator." width="490" height="527" loading="lazy"></a>
+      </div><figcaption>The same post-hoc decision, with a stronger answerer. TAPS adds accuracy training and pairs the trained model with a strong selector; the threshold remains adjustable.</figcaption></figure>
+      <div class="method-copy container blog">
+        <div class="method-step">
+          <p class="step-label orange"><strong>STAGE 1</strong> · TRAIN FOR ACCURACY</p>
+          <p class="text">Improve answers with ordinary post-training. We use GRPO with a common outcome reward: +1 for a correct answer, −1 otherwise. There is no abstention objective anywhere.</p>
+        </div>
+        <div class="method-step">
+          <p class="step-label blue"><strong>STAGE 2</strong> · POST-HOC SELECT</p>
+          <p class="text">Score each answer with an off-the-shelf confidence estimator, such as semantic entropy or a probe on the model’s hidden states. Keep the answer if its score clears τ; otherwise, abstain.</p>
+        </div>
+        <p class="text">The answerer stays fixed while τ sets coverage. TAPS simply combines two well-developed research fields through a minimal interface, so it is easy to put into real-world use and can benefit from advances in either field, making it a general and evolving baseline.
+        </p></div>
+    </div>
+  </section>
+
+  <section class="story-section" id="results" aria-labelledby="results-title">
+    <div class="prose container blog"><p class="section-index">05 / PERFORMANCE AND CONTROL</p><h2 id="results-title">TAPS is competitive with abstention training while keeping coverage adjustable.</h2><p class="text">We test three LLMs on NQ, PopQA, and TriviaQA in a closed-book setting, with chain-of-thought reasoning. In each setting, TAPS and the abstention-training baselines start from the same model and train on the same data. Each block below sets TAPS to the coverage of one baseline and compares risk.</p></div>
+    <figure class="figure table-figure wide-figure">
+      <figcaption><strong>Risk at matched coverage (%, ↓)</strong>. Shaded rows give each baseline’s coverage; Avg. is the mean over the nine model–dataset pairs. For TruthRL, parentheses show the abstention reward. Bold is best; underlined is second best.</figcaption>
+      <div class="table-scroll" role="region" aria-label="Paper Table 1, all five baseline configurations and nine model–dataset pairs" tabindex="0"><a href="{{ assets }}/images/main-table.svg" aria-label="Enlarge the complete main results table"><img src="{{ assets }}/images/main-table.svg" alt="Complete paper Table 1, retaining all values, coverage bands, best-value bolding and second-best underlining. Five groups: R-Tuning, TruthRL with three abstention rewards, and UCPO. Each includes selective answering and TAPS with semantic entropy and probing across nine settings and their average." width="1800" height="1550" loading="lazy"></a></div>
+    </figure>
+    <div class="prose container blog result-reading">
+      <p class="text"><strong>Lower risk.</strong> With a probing estimator, TAPS cuts mean risk by 8.12 pp versus R-Tuning and 9.41 pp versus UCPO. Against the stronger TruthRL, it wins 17 of 27 comparisons, with a mean gain of 1.49 pp across three reward settings. The gain is uneven: largest on the reasoning model Qwen3-8B (5.05 pp below TruthRL), roughly on par on the two instruction-tuned models (0.30 pp higher risk), which highlights its promise for native reasoning models.</p>
+    </div>
+    <figure class="figure wide-figure"><a href="{{ assets }}/images/risk_coverage.svg" aria-label="Enlarge risk coverage results for all nine settings"><img src="{{ assets }}/images/risk_coverage.svg" alt="Risk coverage curves for all nine model and dataset settings: Qwen2.5-7B-Instruct, Qwen3-8B and Llama-3.1-8B-Instruct on NQ, PopQA and TriviaQA. TAPS with semantic entropy or probing traces full curves; abstention-trained checkpoints give individual operating points." width="1500" height="981" loading="lazy"></a><figcaption>All three models across all three datasets. Each TAPS curve comes from one fixed answerer and one estimator; only the threshold changes. Each abstention-training marker is a separately trained model.</figcaption></figure>
+    <div class="prose container blog result-reading">
+      <p class="text"><strong>Control, kept.</strong> One TAPS answerer plus one estimator covers the whole risk–coverage curve. Three separately trained TruthRL reward variants, by contrast, span less than 5 pp of coverage in eight of nine settings.</p>
+    </div>
+    <figure class="figure wide-figure"><a href="{{ assets }}/images/rq2_training_effect_heatmap.svg" aria-label="Enlarge the effects of accuracy training heatmap"><img src="{{ assets }}/images/rq2_training_effect_heatmap.svg" alt="Paper heatmap of changes after accuracy training. Answer accuracy rises by 2.4 to 5.9 percentage points in all nine settings, while confidence AUROC can fall, particularly for Llama. Probing is comparatively stable after refitting." width="1500" height="363" loading="lazy"></a><figcaption><strong>Effects of accuracy training on answering and rejection.</strong> ΔAcc measures the change in answer accuracy; ΔAUROC measures the change in the estimator’s ability to distinguish correct from wrong answers.</figcaption></figure>
+    <div class="prose container blog result-reading">
+      <p class="text"><strong>Stage 1 improves answering, but can degrade confidence estimation.</strong> Accuracy training lowers risk in 81 of 90 matched-coverage comparisons (3.55 pp on average). It does so by improving the answers: accuracy rises in all nine model–dataset settings, by 2.4–5.9 pp. However, post-training can degrade confidence estimation, potentially lowering rejection precision.</p>
+      <p class="text"><strong>Probing in Stage 2 largely recovers the degradation.</strong> Accuracy training damages confidence estimation particularly for the three unsupervised estimators, mainly on Llama. A correctness probe, in contrast, is refit on each checkpoint’s hidden states, allowing it to adapt to the changed representations and largely recover the degradation. Therefore, probing is comparatively stable in the heatmap and gives TAPS its strongest overall results, although the best estimator still depends on the setting.</p>
+    </div>
+  </section>
+
+  <section class="story-section conclusion-section" id="takeaway" aria-labelledby="takeaway-title">
+    <div class="prose container blog">
+      <p class="section-index">06 / THE TAKEAWAY</p>
+      <div class="takeaway-item">
+        <div class="takeaway-heading">
+        <span class="takeaway-tag">Insight</span>
+        <h2 id="takeaway-title">Abstention training wins by answering better.</h2>
+        </div>
+        <p class="text">Risk depends on both how well a model answers and how precisely it rejects wrong answers. A strong post-hoc selector can already match much of abstention training’s rejection precision. Against that selector, abstention training’s remaining advantage comes mainly from better answering, rather than more precise rejection. <strong>Improved abstention performance alone does not establish that learning to abstain is what helped.</strong></p>
+      </div>
+      <div class="takeaway-item">
+        <div class="takeaway-heading">
+        <span class="takeaway-tag">Implication</span>
+        <h2 id="implication-title">Internalizing abstention should achieve more than TAPS.</h2>
+        </div>
+        <p class="text">TAPS combines an accuracy-trained answerer with a strong post-hoc selector and retains direct control over coverage. This makes it a more informative baseline for evaluating abstention training. <strong>A method that gives up that control should deliver further gains over TAPS</strong>, beyond improvements over the model it started from.</p>
+      </div>
+    </div>
+  </section>
+

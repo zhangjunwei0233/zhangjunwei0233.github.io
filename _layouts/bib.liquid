@@ -242,6 +242,14 @@
       {% if paper_url != '' %}
         <a href="{{ paper_url | escape }}" class="btn btn-sm z-depth-0" role="button">paper</a>
       {% endif %}
+      {% if entry.project %}
+        {% if entry.project contains '://' %}
+          {% assign project_url = entry.project %}
+        {% else %}
+          {% assign project_url = entry.project | relative_url %}
+        {% endif %}
+        <a href="{{ project_url | escape }}" class="btn btn-sm z-depth-0" role="button">Project</a>
+      {% endif %}
       {% if entry.bibtex_show %}
         <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
       {% endif %}
