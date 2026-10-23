@@ -48,6 +48,12 @@
       "icon": "book"
     },
     {
+      "label": "Code",
+      "icon": "code",
+      "status": "coming soon",
+      "disabled": true
+    },
+    {
       "label": "Poster",
       "href": "assets/poster.pdf",
       "icon": "poster"

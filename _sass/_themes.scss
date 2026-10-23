@@ -10,8 +10,8 @@
   --global-code-bg-color: #{$code-bg-color-light};
   --global-text-color: #{$black-color};
   --global-text-color-light: #{$grey-color};
-  --global-theme-color: #{$purple-color};
-  --global-hover-color: #{$purple-color};
+  --global-theme-color: #246b9b;
+  --global-hover-color: #18537e;
   --global-hover-text-color: #{$white-color};
   --global-footer-bg-color: #{$grey-color-dark};
   --global-footer-text-color: #{$grey-color-light};
@@ -19,6 +19,15 @@
   --global-distill-app-color: #{$grey-color};
   --global-divider-color: rgba(0, 0, 0, 0.1);
   --global-card-bg-color: #{$white-color};
+  --global-project-caption-bg: #edf4f9;
+  --global-navbar-bg: linear-gradient(112deg, rgba(255, 255, 255, 0.66), rgba(230, 239, 245, 0.48) 48%, rgba(255, 255, 255, 0.62));
+  --global-navbar-fallback: rgba(242, 247, 250, 0.96);
+  --global-paper-color: #246b9b;
+  --global-paper-bg: #eaf3fa;
+  --global-project-color: #9c5129;
+  --global-project-bg: #fff1e8;
+  --global-code-color: #216b56;
+  --global-code-bg: #e9f5ef;
   --global-highlight-color: #{$red-color-dark};
   --global-back-to-top-bg-color: rgba(
     #{color.channel($black-color, "red", $space: rgb)},
@@ -91,6 +100,15 @@ html[data-theme="dark"] {
   --global-distill-app-color: #{$grey-color-light};
   --global-divider-color: #424246;
   --global-card-bg-color: #{$grey-900};
+  --global-project-caption-bg: #{$grey-900};
+  --global-navbar-bg: linear-gradient(112deg, rgba(28, 28, 29, 0.76), rgba(35, 49, 61, 0.62) 48%, rgba(28, 28, 29, 0.72));
+  --global-navbar-fallback: rgba(30, 35, 40, 0.97);
+  --global-paper-color: #95c8ee;
+  --global-paper-bg: #183344;
+  --global-project-color: #efb387;
+  --global-project-bg: #3d2c23;
+  --global-code-color: #99d5bb;
+  --global-code-bg: #203930;
   --global-back-to-top-bg-color: rgba(
     #{color.channel($white-color, "red", $space: rgb)},
     #{color.channel($white-color, "green", $space: rgb)},

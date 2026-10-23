@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: <strong>CS Undergraduate</strong> at <a href='https://www.ucas.ac.cn/'>UCAS</a> | <strong>Exploring Recursive Self-Improvement for AI</strong>
 
@@ -41,6 +41,8 @@ Beyond academics, I enjoy classical music, tinkering with Linux, and discovering
 - 2023.09 - Present: B.S. in Computer Science, University of Chinese Academy of Sciences
 
 <strong>🥇 Honors and Awards</strong>
+
+{: .awards-list}
 
 - <strong>National Scholarship</strong> (Ministry of Education of P.R. China)
 

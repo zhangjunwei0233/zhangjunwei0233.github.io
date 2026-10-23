@@ -12,7 +12,7 @@ from urllib.parse import quote, unquote, urlsplit
 
 TEMPLATE = Path(__file__).resolve().parent
 TOKEN = re.compile(r'{{\s*([^{}]+?)\s*}}')
-ICONS = {'book', 'poster', 'quote'}
+ICONS = {'book', 'poster', 'quote', 'code'}
 
 
 def local_file(project, name):
@@ -86,15 +86,28 @@ def render(project):
     action_html = ''
     if navigation_action:
         action_html = (f'<a class="nav-action" href="{escape(project_url(project, navigation_action["href"]))}">'
-                       f'{escape(navigation_action["label"])}</a>')
+                       f'<span>{escape(navigation_action["label"])}</span>'
+                       '<svg class="nav-external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+                       'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
+                       '<path d="M14 3h7v7M21 3 10 14M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/>'
+                       '</svg></a>')
     links = []
     for item in config.get('resources', []):
         icon = item.get('icon', '')
         if icon and icon not in ICONS:
             raise ValueError(f'Unknown resource icon: {icon}')
         glyph = f'<i class="resource-glyph glyph-{icon}" aria-hidden="true"></i> ' if icon else ''
-        links.append(f'<a class="button" href="{escape(project_url(project, item["href"]))}">{glyph}'
-                     f'<span class="resource-label">{escape(item["label"])}</span></a>')
+        if icon == 'code':
+            glyph = ('<svg class="resource-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+                     'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
+                     '<path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 4l-4 16"/></svg> ')
+        label = f'<span class="resource-label">{escape(item["label"])}</span>'
+        if item.get('status'):
+            label += f' <span class="resource-status">({escape(item["status"])})</span>'
+        if item.get('disabled'):
+            links.append(f'<button class="button" type="button" disabled>{glyph}{label}</button>')
+        else:
+            links.append(f'<a class="button" href="{escape(project_url(project, item["href"]))}">{glyph}{label}</a>')
     theme = config.get('theme', {})
     if any(not re.fullmatch(r'[a-z][a-z0-9-]*', key) or not re.fullmatch(r'#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?', value)
            for key, value in theme.items()):

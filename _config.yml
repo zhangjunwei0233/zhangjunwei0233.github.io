@@ -200,10 +200,6 @@ exclude:
   - "projects/*/content.html"
   - "projects/*/citation.bib"
   - "projects/*/README.md"
-  - "taps/page.json"
-  - "taps/content.html"
-  - "taps/citation.bib"
-  - "taps/README.md"
   - vendor
 keep_files:
   - CNAME

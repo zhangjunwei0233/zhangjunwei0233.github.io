@@ -240,7 +240,7 @@
         {% assign paper_url = entry.url %}
       {% endif %}
       {% if paper_url != '' %}
-        <a href="{{ paper_url | escape }}" class="btn btn-sm z-depth-0" role="button">paper</a>
+        <a href="{{ paper_url | escape }}" class="resource-link resource-paper btn btn-sm z-depth-0" role="button">Paper</a>
       {% endif %}
       {% if entry.project %}
         {% if entry.project contains '://' %}
@@ -248,7 +248,7 @@
         {% else %}
           {% assign project_url = entry.project | relative_url %}
         {% endif %}
-        <a href="{{ project_url | escape }}" class="btn btn-sm z-depth-0" role="button">Project</a>
+        <a href="{{ project_url | escape }}" class="resource-link resource-project btn btn-sm z-depth-0" role="button">Project</a>
       {% endif %}
       {% if entry.bibtex_show %}
         <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
@@ -269,7 +269,7 @@
         <a href="{{ entry.blog }}" class="btn btn-sm z-depth-0" role="button">Blog</a>
       {% endif %}
       {% if entry.code %}
-        <a href="{{ entry.code }}" class="btn btn-sm z-depth-0" role="button">code</a>
+        <a href="{{ entry.code }}" class="resource-link resource-code btn btn-sm z-depth-0" role="button">Code</a>
       {% endif %}
       {% if entry.poster %}
         {% if entry.poster contains '://' %}

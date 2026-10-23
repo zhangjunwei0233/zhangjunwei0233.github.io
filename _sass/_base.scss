@@ -195,6 +195,29 @@ ul.task-list input[type="checkbox"] {
 
 // Profile
 
+.about-content > p {
+  text-align: justify;
+  text-align-last: start;
+  text-justify: inter-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.awards-list {
+  > li + li {
+    margin-top: 1rem;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  > li > ul {
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+  }
+}
+
 .profile {
   width: 100%;
 
@@ -247,10 +270,44 @@ ul.task-list input[type="checkbox"] {
 // Navbar customization
 
 .navbar {
-  box-shadow: none;
-  border-bottom: 1px solid var(--global-divider-color);
-  background-color: var(--global-bg-color);
-  opacity: 0.95;
+  background: var(--global-navbar-bg);
+  -webkit-backdrop-filter: blur(36px) saturate(180%) brightness(1.08);
+  backdrop-filter: blur(36px) saturate(180%) brightness(1.08);
+  border-bottom: 0;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 5px 18px rgba(16, 45, 68, 0.075);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: url("../img/glass-grain.svg") repeat;
+    opacity: 0.1;
+    mix-blend-mode: multiply;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.26) 48%, rgba(255, 255, 255, 0.12));
+    box-shadow: 0 1px 0 rgba(16, 45, 68, 0.08);
+  }
+
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .navbar {
+    background: var(--global-navbar-fallback);
+  }
 }
 
 .navbar .dropdown-menu,
@@ -320,32 +377,47 @@ ul.task-list input[type="checkbox"] {
   }
 
   .navbar-brand.social {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
     padding-bottom: 0;
     padding-top: 0;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
+    line-height: 1;
 
     a {
-      img {
-        width: 1.7rem;
-        height: 1.7rem;
-        margin-bottom: 0.5rem;
-        // margin: 0.5rem;
-      }
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      line-height: 1;
 
+      img,
       svg {
-        width: 1.7rem;
-        height: 1.7rem;
-        margin-bottom: 0.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        margin: 0;
+        object-fit: contain;
 
         image {
-          width: 1.7rem;
-          height: 1.7rem;
+          width: 1.5rem;
+          height: 1.5rem;
         }
+      }
+
+      i {
+        display: block;
+        line-height: 1;
+      }
+
+      &.social-scholar i {
+        font-size: 0.88em;
       }
 
       i::before {
         color: var(--global-text-color);
-        transition-property: all 0.2s ease-in-out;
+        transition: color 0.2s ease-in-out;
       }
 
       &:hover {
@@ -415,29 +487,47 @@ ul.task-list input[type="checkbox"] {
   text-align: center;
 
   .contact-icons {
-    font-size: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 1rem 0;
+    font-size: 2.75rem;
 
     a {
-      img {
-        width: 3.2rem;
-        height: 3.2rem;
-        margin-bottom: 1rem;
-      }
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3.5rem;
+      height: 3.5rem;
+      line-height: 1;
 
+      img,
       svg {
-        width: 3.5rem;
-        height: 4rem;
-        margin-bottom: 0.5rem;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin: 0;
+        object-fit: contain;
 
         image {
-          width: 3.5rem;
-          height: 3.5rem;
+          width: 2.75rem;
+          height: 2.75rem;
         }
+      }
+
+      i {
+        display: block;
+        line-height: 1;
+      }
+
+      &.social-scholar i {
+        font-size: 0.88em;
       }
 
       i::before {
         color: var(--global-text-color);
-        transition-property: all 0.2s ease-in-out;
+        transition: color 0.2s ease-in-out;
       }
 
       &:hover {
@@ -687,6 +777,19 @@ footer.sticky-bottom {
   }
 
   .card {
+    overflow: hidden;
+    border: 1px solid var(--global-divider-color);
+    border-radius: 8px;
+
+    figure {
+      margin: 0;
+    }
+
+    .card-body {
+      background-color: var(--global-project-caption-bg);
+      border-top: 1px solid var(--global-divider-color);
+    }
+
     .card-text {
       color: var(--global-text-color);
     }
@@ -882,6 +985,43 @@ footer.sticky-bottom {
             color: var(--global-theme-color);
             border-color: var(--global-theme-color);
           }
+
+          &.resource-paper {
+            --resource-color: var(--global-paper-color);
+            --resource-bg: var(--global-paper-bg);
+          }
+
+          &.resource-project {
+            --resource-color: var(--global-project-color);
+            --resource-bg: var(--global-project-bg);
+          }
+
+          &.resource-code {
+            --resource-color: var(--global-code-color);
+            --resource-bg: var(--global-code-bg);
+          }
+
+          &.resource-link {
+            color: var(--resource-color);
+            background-color: var(--resource-bg);
+            border-color: transparent;
+            border-radius: 5px;
+            font-weight: 600;
+            transition:
+              color 0.2s ease,
+              background-color 0.2s ease;
+
+            &:hover {
+              color: var(--global-bg-color);
+              background-color: var(--resource-color);
+              border-color: transparent;
+            }
+
+            &:focus-visible {
+              outline: 2px solid var(--resource-color);
+              outline-offset: 3px;
+            }
+          }
         }
         a.award.btn {
           border-color: var(--global-highlight-color);
@@ -1044,7 +1184,7 @@ progress {
 
   /* Dimensions */
   width: 100%;
-  height: 1px;
+  height: 2px;
 
   /* Reset the appearance */
   -webkit-appearance: none;
@@ -1079,7 +1219,7 @@ progress::-moz-progress-bar {
   position: fixed;
   top: 56px;
   left: 0;
-  height: 5px;
+  height: 2px;
   display: block;
 }
 

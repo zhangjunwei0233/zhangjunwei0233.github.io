@@ -72,13 +72,15 @@ python3 /path/to/collection/project-page/build.py /path/to/site/projects/my-proj
 | `navigation_action`                                     | 导航栏右侧的主题色链接，包含 `label` 和 `href`，例如返回项目列表               |
 | `favicon`                                                | 项目内的图标文件                                                             |
 | `navigation`                                             | 章节导航；`id` 对应正文锚点，`compact_hide: true` 在窄屏隐藏该项             |
-| `resources`                                              | 资源按钮；每项含 `label`、`href`，可选 `icon` 为 `book`、`poster` 或 `quote` |
+| `resources`                                              | 资源按钮；每项含 `label`、`href`，可选 `icon` 为 `book`、`code`、`poster` 或 `quote` |
 | `theme`                                                  | CSS 变量名到十六进制颜色的映射                                               |
 | `styles`、`scripts`                                      | 项目内的附加 CSS、JavaScript 文件列表                                        |
 | `citation`                                               | 项目内的引用文本文件                                                         |
 | `footer`                                                 | `note`、`label` 和 `url` 组成的页脚                                          |
 
 普通文本字段会自动转义；以 `_html` 结尾的字段保留 HTML。资源文件路径相对于项目目录，也支持外部链接和页内锚点。
+
+尚未开放的资源可设置 `disabled: true`，省略 `href`，并使用 `status: "coming soon"` 显示附注。开放后添加 `href` 并移除 `disabled` 和 `status`。
 
 ## 正文与素材
 
