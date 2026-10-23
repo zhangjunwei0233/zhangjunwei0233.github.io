@@ -189,14 +189,21 @@ exclude:
   - package.json
   - package-lock.json
   - _pages/about_einstein.md
+  - "_projects/*_project.md" # al-folio demo projects
   - purgecss.config.js
   - README.md
   - readme_preview/
-  - projects/taps/build.py
-  - projects/taps/template/page.html
-  - projects/taps/taps/page.json
-  - projects/taps/taps/content.html
-  - projects/taps/taps/citation.bib
+  - "templates/*/build.py"
+  - "templates/*/page.html"
+  - "templates/*/README.md"
+  - "projects/*/page.json"
+  - "projects/*/content.html"
+  - "projects/*/citation.bib"
+  - "projects/*/README.md"
+  - "taps/page.json"
+  - "taps/content.html"
+  - "taps/citation.bib"
+  - "taps/README.md"
   - vendor
 keep_files:
   - CNAME
@@ -238,7 +245,8 @@ sass:
 
 jekyll-minifier:
   compress_javascript: false # set to false since we are using terser as the js minifier
-  exclude: ["robots.txt", "assets/js/search/*.js", "projects/taps/**"]
+  # Preserve standalone styles that use CSS variables inside calculations.
+  exclude: ["robots.txt", "assets/js/search/*.js", "projects/**", "taps/**", "templates/**"]
 
 # -----------------------------------------------------------------------------
 # Terser

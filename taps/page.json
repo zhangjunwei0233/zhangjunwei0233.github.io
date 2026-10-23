@@ -11,6 +11,10 @@
   "author_notes_html": "* Equal contribution &nbsp; † Corresponding author",
   "navigation": [
     {
+      "id": "overview",
+      "label": "Overview"
+    },
+    {
       "id": "routes",
       "label": "Motivation",
       "compact_hide": true
@@ -33,6 +37,10 @@
       "label": "Takeaway"
     }
   ],
+  "navigation_action": {
+    "label": "More Projects",
+    "href": "/projects/"
+  },
   "resources": [
     {
       "label": "Paper",

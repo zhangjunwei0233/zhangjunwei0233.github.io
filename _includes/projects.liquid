@@ -1,13 +1,17 @@
 <div class="col">
-  <a href="{% if project.redirect %}{{ project.redirect }}{% else %}{{ project.url | relative_url }}{% endif %}">
+  {% assign project_url = project.redirect | default: project.url %}
+  {% unless project_url contains '://' %}
+    {% assign project_url = project_url | relative_url %}
+  {% endunless %}
+  <a href="{{ project_url }}">
     <div class="card h-100 hoverable">
       {% if project.img %}
         {%
           include figure.liquid
           loading="eager"
           path=project.img
-          sizes = "250px"
-          alt="project thumbnail"
+          sizes = "(min-width: 768px) 450px, 100vw"
+          alt=project.title
           class="card-img-top"
         %}
       {% endif %}

@@ -687,8 +687,19 @@ footer.sticky-bottom {
   }
 
   .card {
+    .card-text {
+      color: var(--global-text-color);
+    }
+
     img {
       width: 100%;
+    }
+
+    .card-img-top {
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      padding: 0.75rem;
+      background-color: white;
     }
   }
 

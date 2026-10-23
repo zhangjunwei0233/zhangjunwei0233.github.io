@@ -10,10 +10,10 @@
   <meta property="og:title" content="{{ social_title }}">
   <meta property="og:description" content="{{ social_description }}">
   {{ favicon }}
-  <link rel="stylesheet" href="template/style.css">
+  <link rel="stylesheet" href="{{ template }}/style.css">
   {{ theme }}
   {{ styles }}
-  <script defer src="template/site.js"></script>
+  <script defer src="{{ template }}/site.js"></script>
   {{ scripts }}
 </head>
 <body>
@@ -21,6 +21,7 @@
 <header class="site-header">
   <a class="wordmark" href="#top">{{ name }}<span class="brand-dot" aria-hidden="true">.</span></a>
   <nav aria-label="Page navigation">{{ navigation }}</nav>
+  {{ navigation_action }}
 </header>
 <main id="top">
   <div class="paper-heading">
