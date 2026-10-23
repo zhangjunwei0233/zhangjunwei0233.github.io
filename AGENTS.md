@@ -2,13 +2,13 @@
 
 ## Project Structure & Module Organization
 
-This repository is a Jekyll-based personal site derived from al-folio. Main configuration lives in `_config.yml`; update it for site metadata, navigation, analytics, and feature flags. Content collections are split by purpose: `_pages/` for top-level pages, `_posts/` for dated blog posts, `_projects/` for portfolio entries, `_news/` for announcements, `_books/` for book notes, and `_bibliography/papers.bib` for publications. Layout and rendering code lives in `_layouts/`, `_includes/`, `_plugins/`, `_sass/`, and `_scripts/`. Static files belong in `assets/`, grouped by type such as `assets/json/`, `assets/fonts/`, and `assets/audio/`.
+This repository is a Jekyll-based personal site derived from al-folio. Main configuration lives in `_config.yml`; update it for site metadata, navigation, analytics, and feature flags. Content is split by purpose: `_pages/` for top-level pages, `_posts/` for dated blog posts, `_news/` for announcements, `_books/` for book notes, and `_bibliography/papers.bib` for publications. Project instances live in `projects/<slug>/`; all shared project code and the copyable starter live in `templates/project-page/`. Jekyll renders project pages and card data automatically, with generated HTML only in the ignored `_site/` directory. Layout and rendering code lives in `_layouts/`, `_includes/`, `_plugins/`, `_sass/`, and `_scripts/`. Static files belong in `assets/`, grouped by type.
 
 ## Build, Test, and Development Commands
 
 - `bundle install`: install Ruby and Jekyll dependencies from `Gemfile`.
 - `npm install`: install Prettier and the Liquid formatting plugin.
-- `pip install jupyter`: required for notebook-backed Jekyll content.
+- Python 3.9+ is required for the shared project renderer; Jekyll invokes it automatically.
 - `bundle exec jekyll serve`: run the site locally at `http://localhost:4000`.
 - `bundle exec jekyll build`: generate the production site in `_site/`.
 - `npx prettier . --check`: verify formatting before committing.
