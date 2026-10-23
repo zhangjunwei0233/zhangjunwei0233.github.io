@@ -123,13 +123,7 @@ disqus_shortname: al-folio # put your disqus shortname
 # External sources.
 # If you have blog posts published on medium.com or other external sources,
 # you can display them in your blog by adding a link to the RSS feed.
-external_sources:
-  - name: medium.com
-    rss_url: https://medium.com/@al-folio/feed
-  - name: Google Blog
-    posts:
-      - url: https://blog.google/technology/ai/google-gemini-update-flash-ai-assistant-io-2024/
-        published_date: 2024-05-14
+external_sources: []
 
 # -----------------------------------------------------------------------------
 # Newsletter
@@ -150,8 +144,6 @@ collections:
   news:
     defaults:
       layout: post
-    output: true
-  projects:
     output: true
 
 # -----------------------------------------------------------------------------
@@ -185,21 +177,10 @@ exclude:
   - Gemfile.lock
   - INSTALL.md
   - LICENSE
-  - lighthouse_results/
   - package.json
   - package-lock.json
-  - _pages/about_einstein.md
-  - "_projects/*_project.md" # al-folio demo projects
   - purgecss.config.js
   - README.md
-  - readme_preview/
-  - "templates/*/build.py"
-  - "templates/*/page.html"
-  - "templates/*/README.md"
-  - "projects/*/page.json"
-  - "projects/*/content.html"
-  - "projects/*/citation.bib"
-  - "projects/*/README.md"
   - vendor
 keep_files:
   - CNAME
@@ -242,7 +223,7 @@ sass:
 jekyll-minifier:
   compress_javascript: false # set to false since we are using terser as the js minifier
   # Preserve standalone styles that use CSS variables inside calculations.
-  exclude: ["robots.txt", "assets/js/search/*.js", "projects/**", "taps/**", "templates/**"]
+  exclude: ["robots.txt", "assets/js/search/*.js", "projects/**", "templates/**"]
 
 # -----------------------------------------------------------------------------
 # Terser
@@ -399,7 +380,6 @@ enable_math: true # enables math typesetting (uses MathJax)
 enable_tooltips: false # enables automatic tooltip links generated for each section titles on pages and posts
 enable_darkmode: true # enables switching between light/dark modes
 enable_navbar_social: true # enables displaying social links in the navbar on the about page
-enable_project_categories: true # enables categorization of projects into multiple categories
 enable_medium_zoom: true # enables image zoom feature (as on medium.com)
 enable_progressbar: true # enables a horizontal progress bar linked to the vertical scroll position
 enable_video_embedding: false # enables video embedding for bibtex entries. If false, the button opens the video link in a new window.

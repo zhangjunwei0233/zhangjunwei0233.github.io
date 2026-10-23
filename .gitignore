@@ -1,4 +1,5 @@
 _site
+/projects/*/index.html
 .bundle
 .sass-cache
 .jekyll-cache

@@ -1,0 +1,11 @@
+{
+  "name": "Project",
+  "title": "Project title",
+  "description": "A short description of the project.",
+  "heading_html": "Project title",
+  "authors_html": "Author name",
+  "navigation": [{ "id": "overview", "label": "Overview" }],
+  "navigation_action": { "label": "More Projects", "href": "/projects/" },
+  "resources": [{ "label": "Code", "icon": "code", "status": "coming soon", "disabled": true }],
+  "card": { "image": "assets/figure.svg", "order": 1 }
+}

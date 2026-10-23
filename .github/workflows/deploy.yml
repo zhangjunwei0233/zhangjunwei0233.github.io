@@ -8,8 +8,8 @@ on:
     paths:
       - "assets/**"
       - "projects/**"
-      - "taps/**"
       - "templates/**"
+      - "_plugins/**"
       - "_sass/**"
       - "_scripts/**"
       - "**.bib"
@@ -25,9 +25,7 @@ on:
       - "!.github/workflows/deploy-docker-tag.yml"
       - "!.github/workflows/deploy-image.yml"
       - "!.github/workflows/docker-slim.yml"
-      - "!.github/workflows/lighthouse-badger.yml"
       - "!.github/workflows/prettier.yml"
-      - "!lighthouse_results/**"
       - "!CONTRIBUTING.md"
       - "!CUSTOMIZE.md"
       - "!FAQ.md"
@@ -40,8 +38,8 @@ on:
     paths:
       - "assets/**"
       - "projects/**"
-      - "taps/**"
       - "templates/**"
+      - "_plugins/**"
       - "_sass/**"
       - "_scripts/**"
       - "**.bib"
@@ -57,9 +55,7 @@ on:
       - "!.github/workflows/deploy-docker-tag.yml"
       - "!.github/workflows/deploy-image.yml"
       - "!.github/workflows/docker-slim.yml"
-      - "!.github/workflows/lighthouse-badger.yml"
       - "!.github/workflows/prettier.yml"
-      - "!lighthouse_results/**"
       - "!CONTRIBUTING.md"
       - "!CUSTOMIZE.md"
       - "!FAQ.md"
@@ -86,7 +82,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-          cache: "pip" # caching pip dependencies
       - name: Update _config.yml ⚙️
         uses: fjogeleit/yaml-update-action@main
         with:
@@ -97,11 +92,6 @@ jobs:
       - name: Install and Build 🔧
         run: |
           sudo apt-get update && sudo apt-get install -y imagemagick
-          pip3 install --upgrade nbconvert
-          for project_config in projects/*/page.json; do
-            [ -f "$project_config" ] || continue
-            python3 templates/project-page/build.py "$(dirname "$project_config")"
-          done
           export JEKYLL_ENV=production
           bundle exec jekyll build
       - name: Purge unused CSS 🧹

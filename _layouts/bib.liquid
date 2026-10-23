@@ -31,7 +31,7 @@
             {% if entry.preview contains '://' %}
               <img class="preview rounded" src="{{ entry.preview }}" alt="{{ entry.title | escape }}" loading="lazy">
             {% else %}
-              {% assign entry_path = entry.preview | prepend: '/assets/img/publication_preview/' %}
+              {% assign entry_path = entry.preview | prepend: '/assets/img/publications/' %}
               {%
                 include figure.liquid
                 loading="eager"

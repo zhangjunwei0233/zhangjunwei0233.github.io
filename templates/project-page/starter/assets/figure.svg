@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <rect width="800" height="450" rx="16" fill="#edf4f9"/>
+  <rect x="80" y="90" width="640" height="270" rx="12" fill="none" stroke="#2a709e" stroke-width="2" stroke-dasharray="10 8"/>
+  <text x="400" y="235" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#2a709e">Your project figure</text>
+</svg>

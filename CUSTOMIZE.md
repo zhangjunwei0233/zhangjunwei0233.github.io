@@ -27,8 +27,6 @@ Here we will give you some tips on how to customize the website. One important t
     - [Removing the publications page](#removing-the-publications-page)
     - [Removing the repositories page](#removing-the-repositories-page)
     - [You can also remove pages through commenting out front-matter blocks](#you-can-also-remove-pages-through-commenting-out-front-matter-blocks)
-  - [Adding Token for Lighthouse Badger](#adding-token-for-lighthouse-badger)
-    - [Personal Access Token (fine-grained) Permissions for Lighthouse Badger:](#personal-access-token-fine-grained-permissions-for-lighthouse-badger)
   - [Customizing fonts, spacing, and more](#customizing-fonts-spacing-and-more)
   - [Scheduled Posts](#scheduled-posts)
     - [Name Format](#name-format)
@@ -63,7 +61,7 @@ The project is structured as follows, focusing on the main components that you w
 ├── 📂 _pages/: contains the pages of the website
 |   └── 📄 404.md: 404 page (page not found)
 ├── 📂 _posts/: contains the blog posts
-├── 📂 _projects/: contains the projects
+├── 📂 projects/: contains project instances
 └── 📂 _sass/: contains the SASS files that define the style of the website
     ├── 📄 _base.scss: base style of the website
     ├── 📄 _cv.scss: style of the CV page
@@ -105,7 +103,7 @@ Note that `posts` is also a collection, but it is a default collection created a
 
 ## Creating new projects
 
-You can create new projects by adding new Markdown files in the [\_projects](_projects/) directory. The easiest way to do this is to copy an existing project and modify it.
+Copy `templates/project-page/starter/` to `projects/<slug>/`, then edit `page.json`, `content.html`, and the project assets. The [shared template](templates/project-page/README.md) is rendered automatically by Jekyll. The same configuration supplies the Projects grid; generated HTML exists only in `_site/`.
 
 ## Adding some news
 
@@ -113,7 +111,7 @@ You can add news in the about page by adding new Markdown files in the [\_news](
 
 ## Adding Collections
 
-This Jekyll theme implements [collections](https://jekyllrb.com/docs/collections/) to let you break up your work into categories. The theme comes with three default collections: `news`, `projects`, and `books`. Items from the `news` collection are automatically displayed on the home page, while items from the `projects` collection are displayed on a responsive grid on projects page and items from the `books` collection are displayed on its own `bookshelf` page inside `submenus`.
+This Jekyll theme implements [collections](https://jekyllrb.com/docs/collections/) to let you break up your work into categories. The site uses two collections: `news` and `books`. Items from the `news` collection are automatically displayed on the home page, while items from the `books` collection are displayed on its own `bookshelf` page inside `submenus`.
 
 You can easily create your own collections, apps, short stories, courses, or whatever your creative work is. To do this, edit the collections in the [\_config.yml](_config.yml) file, create a corresponding folder, and create a landing page for your collection, similar to [\_pages/projects.md](_pages/projects.md).
 
@@ -207,8 +205,6 @@ exclude:
   - _news/announcement_*.md
   - _pages/blog.md
   - _posts/
-  - _projects/?_project.md
-  - assets/jupyter/blog.ipynb
 ```
 
 Here is a list of the main components that you may want to delete, and how to do it. Don't forget if you delete a page to update the `nav_order` of the remaining pages.
@@ -243,17 +239,7 @@ To remove the news section, you can:
 
 ### Removing the projects page
 
-To remove the projects, you can:
-
-- delete the [\_projects](_projects/) directory
-- delete the projects page [\_pages/projects.md](_pages/projects.md)
-- remove reference to projects page in our [\_pages/dropdown.md](_pages/dropdown.md)
-- remove projects part in the `Collections` section in the [\_config.yml](_config.yml) file
-
-You can also:
-
-- delete [\_includes/projects_horizontal.liquid](_includes/projects_horizontal.liquid)
-- delete [\_includes/projects.liquid](_includes/projects.liquid)
+Remove `_pages/projects.md`, the project instances under `projects/`, and `_plugins/project-pages.rb`. Shared project resources live under `templates/project-page/`.
 
 ### Removing the publications page
 
@@ -304,19 +290,6 @@ collection: books
 ## Books that I am reading, have read, or will read
 ```
 
-## Adding Token for Lighthouse Badger
-
-To add secrets for [lighthouse-badger](https://github.com/alshedivat/al-folio/actions/workflows/lighthouse-badger.yml), create a [personal access token (PAT)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) and add it as a [secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-encrypted-secrets-for-a-repository) named `LIGHTHOUSE_BADGER_TOKEN` to your repository. The [lighthouse-badger documentation](https://github.com/MyActionWay/lighthouse-badger-workflows#lighthouse-badger-easyyml) specifies using an environment variable, but using it as a secret is more secure and appropriate for a PAT.
-
-Also In case you face the error: "Input required and not supplied: token" in the Lighthouse Badger action, this solution resolves it.
-
-### Personal Access Token (fine-grained) Permissions for Lighthouse Badger:
-
-- **contents**: access: read and write
-- **metadata**: access: read-only
-
-Due to the necessary permissions (PAT and others mentioned above), it is recommended to use it as a secret rather than an environment variable.
-
 ## Customizing fonts, spacing, and more
 
 You can customize the fonts, spacing, and more by editing [\_sass/\_base.scss](_sass/_base.scss). The easiest way to try in advance the changes is by using [chrome dev tools](https://developer.chrome.com/docs/devtools/css) or [firefox dev tools](https://firefox-source-docs.mozilla.org/devtools-user/). In there you can click in the element and find all the attributes that are set for that element and where are they. For more information on how to use this, check [chrome](https://developer.chrome.com/docs/devtools/css) and [firefox](https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/examine_and_edit_css/index.html) how-tos, and [this tutorial](https://www.youtube.com/watch?v=l0sgiwJyEu4).
@@ -342,7 +315,7 @@ In this folder you need to store your file in the same format as you would in `_
 - It will only upload files which follow the pattern `yyyy-mm-dd-title.md`
   - This means that only markdown files will be posted
   - It means that any markdown which do not follow this pattern will not be posted
-- The scheduler works by moving posts from the `_scheduled/` directory to `_posts/`, it will not post to folders like `_projects/` or `_news/`
+- The scheduler works by moving posts from the `_scheduled/` directory to `_posts/`, it will not post to folders like `projects/` or `_news/`
 - The date in the name of the file is the day that file will be uploaded on
   - `2024-08-27-file1.md` will not be posted before or after 27-August-2024 (Scheduler only works for posts scheduled on the present day)
   - `2025-08-27-file2.md` will be posted exactly on 27-August-2025

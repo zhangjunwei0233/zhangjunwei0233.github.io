@@ -283,7 +283,7 @@ ul.task-list input[type="checkbox"] {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: url("../img/glass-grain.svg") repeat;
+    background: url("../../templates/project-page/glass-grain.svg") repeat;
     opacity: 0.1;
     mix-blend-mode: multiply;
   }
@@ -808,21 +808,6 @@ footer.sticky-bottom {
 
   .col {
     padding-bottom: 1rem;
-  }
-
-  .grid-sizer,
-  .grid-item {
-    width: 250px;
-    margin-bottom: 10px;
-  }
-
-  h2.category {
-    color: var(--global-divider-color);
-    border-bottom: 1px solid var(--global-divider-color);
-    padding-top: 0.5rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    text-align: right;
   }
 }
 

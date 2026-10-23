@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a static page using the shared template. Python standard library only."""
+"""Render project HTML to stdout. Files are written only by Jekyll to _site/."""
 import argparse
 import html
 from html.parser import HTMLParser
@@ -153,45 +153,17 @@ def render(project):
     return source
 
 
-def initialize(project):
-    project.mkdir(parents=True, exist_ok=False)
-    (project / 'assets').mkdir()
-    config = {'name': 'Project', 'title': 'Project title', 'description': 'A short project summary.',
-              'heading_html': 'Project title', 'authors_html': 'Author name',
-              'navigation': [{'id': 'overview', 'label': 'Overview'}], 'resources': []}
-    (project / 'page.json').write_text(json.dumps(config, indent=2) + '\n')
-    (project / 'content.html').write_text('''  <section class="story-section" id="overview" aria-labelledby="overview-title">
-    <div class="prose container blog">
-      <p class="section-index">01 / OVERVIEW</p>
-      <h2 id="overview-title">Introduce the project.</h2>
-      <p class="text">Replace this paragraph with your content.</p>
-    </div>
-  </section>
-''')
-    print(f'Created {project}')
-
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('project', nargs='?', type=Path, help='Project source directory')
-    parser.add_argument('--init', metavar='DIRECTORY', type=Path, help='Create a minimal project')
-    parser.add_argument('--check', action='store_true', help='Validate and check the generated entry page')
+    parser.add_argument('project', type=Path, help='Project source directory')
+    parser.add_argument('--check', action='store_true', help='Validate project sources and references without writing files')
     args = parser.parse_args()
-    if args.init:
-        initialize(args.init.resolve())
-        return
-    if args.project is None:
-        parser.error('provide a project directory, or use --init DIRECTORY')
     project = args.project.resolve()
     source = render(project)
-    output = project / 'index.html'
     if args.check:
-        if not output.exists() or output.read_text() != source:
-            raise ValueError('index.html is out of date; run the build command')
         print(f'{project.name}: page and asset references verified')
     else:
-        output.write_text(source)
-        print(f'Built {output}')
+        sys.stdout.write(source)
 
 
 if __name__ == '__main__':

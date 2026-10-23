@@ -2,6 +2,11 @@
   "title": "TAPS — Strong yet Controllable LLM Abstention",
   "description": "Against a strong selector, abstention training’s edge comes mostly from answering better, while it fixes coverage. TAPS (train for accuracy, then select post hoc) is a strong baseline that stays controllable.",
   "name": "TAPS",
+  "card": {
+    "description": "Strong yet controllable LLM abstention: train for accuracy, then select post hoc.",
+    "image": "/assets/img/publications/strong-yet-controllable-llm-abstention.png",
+    "order": 1
+  },
   "social_title": "Strong yet Controllable LLM Abstention without Learning to Abstain",
   "social_description": "Train for accuracy, then select post hoc: a stronger baseline for learning to abstain.",
   "favicon": "assets/images/favicon.svg",
@@ -66,7 +71,7 @@
   ],
   "citation": "citation.bib",
   "styles": [
-    "chart.css"
+    "style.css"
   ],
   "scripts": [
     "curves.js",
