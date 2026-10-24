@@ -4,6 +4,31 @@
 
 // Typography
 
+body {
+  font-family: var(--sans);
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--mono);
+}
+
 p,
 h1,
 h2,
@@ -195,6 +220,17 @@ ul.task-list input[type="checkbox"] {
 
 // Profile
 
+.about-subtitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.6;
+
+  strong,
+  a {
+    font-weight: inherit;
+  }
+}
+
 .about-content > p {
   text-align: justify;
   text-align-last: start;
@@ -203,18 +239,164 @@ ul.task-list input[type="checkbox"] {
   hyphens: auto;
 }
 
-.awards-list {
-  > li + li {
-    margin-top: 1rem;
+.about-section {
+  clear: both;
+  margin-top: 2rem;
+  padding: 1rem 1.5rem 1.5rem;
+  border-radius: 8px;
+  background-color: var(--global-section-bg-color);
+  text-align: left;
+
+  > .publications {
+    margin-top: 0;
+
+    ol.bibliography {
+      margin-bottom: 0;
+
+      > li {
+        margin-bottom: 1.5rem;
+      }
+
+      > li:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
-  p {
-    margin-bottom: 0;
+  > h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0 0 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+
+    a {
+      color: inherit;
+    }
+
+    i {
+      width: 1.5rem;
+      flex: 0 0 1.5rem;
+      font-size: 1.125rem;
+      text-align: center;
+    }
   }
 
-  > li > ul {
-    margin-top: 0.25rem;
+  .about-experience-section h3,
+  .about-experience-section h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .about-experience-section p,
+  .about-awards p {
+    margin: 0;
+  }
+
+  .about-detail,
+  .about-date {
+    color: var(--global-text-color-light);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .about-date {
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .about-experience-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .about-experience-section {
+    > h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.125rem;
+    }
+  }
+
+  .about-experience-entry {
+    padding-left: 1rem;
+    border-left: 3px solid var(--global-divider-color);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .about-experience-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .news-date-right {
     margin-bottom: 0;
+
+    td {
+      padding: 0.5rem 0;
+      vertical-align: baseline;
+
+      &:not(.about-date) {
+        color: var(--global-text-color);
+      }
+    }
+
+    tr:first-child td {
+      padding-top: 0;
+    }
+
+    tr:last-child td {
+      padding-bottom: 0;
+    }
+
+    .about-date {
+      padding-left: 1.5rem;
+      width: 1%;
+    }
+  }
+
+  .about-awards {
+    display: grid;
+    row-gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    strong {
+      font-weight: 600;
+    }
+
+    > li {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: baseline;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 575px) {
+    padding: 1rem;
+
+    .about-experience-heading .about-date {
+      max-width: 8rem;
+      white-space: normal;
+    }
+
+    .about-awards > li {
+      gap: 0.5rem;
+    }
+
+    .news-date-right .about-date {
+      padding-left: 0.75rem;
+    }
   }
 }
 
@@ -816,6 +998,51 @@ footer.sticky-bottom {
 .publications {
   margin-top: 2rem;
 
+  // Scholar renders each group as a heading followed by a list.
+  // Give both elements one continuous card surface, including during search.
+  &.publication-groups {
+    margin-top: 0;
+
+    > h2.bibliography {
+      margin: 2rem 0 0;
+      padding: 1rem 1.5rem 1.5rem;
+      border: 0;
+      border-radius: 8px 8px 0 0;
+      background-color: var(--global-section-bg-color);
+      color: var(--global-text-color);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    > ol.bibliography {
+      margin: 0;
+      padding: 0 1.5rem 1.5rem;
+      border-radius: 0 0 8px 8px;
+      background-color: var(--global-section-bg-color);
+
+      > li {
+        margin-bottom: 1.5rem;
+      }
+
+      > li:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 575px) {
+      > h2.bibliography {
+        padding-right: 1rem;
+        padding-left: 1rem;
+      }
+
+      > ol.bibliography {
+        padding: 0 1rem 1rem;
+      }
+    }
+  }
+
   h1 {
     color: var(--global-theme-color);
     font-size: 2rem;
@@ -848,7 +1075,7 @@ footer.sticky-bottom {
     li {
       margin-bottom: 1rem;
 
-      .publication-thumbnail.abbr {
+      .publication-thumbnail {
         align-self: center;
         display: flex;
         flex-direction: column;
@@ -861,6 +1088,22 @@ footer.sticky-bottom {
           aspect-ratio: 16 / 9;
           background-color: white;
           border: 1px solid var(--global-divider-color);
+        }
+
+        .publication-venue-ribbon {
+          position: absolute;
+          top: 0.5rem;
+          left: -0.375rem;
+          z-index: 1;
+          max-width: calc(100% + 0.375rem);
+          padding: 0.2rem 0.6rem;
+          background-color: #0755b5;
+          color: white;
+          font-size: 0.7rem;
+          font-weight: 600;
+          line-height: 1.3;
+          white-space: nowrap;
+          pointer-events: none;
         }
 
         // Keep intrinsic image dimensions from expanding the fixed-ratio frame.
@@ -898,30 +1141,6 @@ footer.sticky-bottom {
           .publication-preview-frame {
             max-width: 240px;
           }
-        }
-      }
-
-      .abbr {
-        margin-bottom: 0.5rem;
-
-        abbr {
-          display: inline-block;
-          background-color: var(--global-theme-color);
-          margin-bottom: 0.5rem;
-          color: var(--global-card-bg-color) !important;
-
-          a {
-            color: white;
-
-            &:hover {
-              text-decoration: none;
-            }
-          }
-        }
-
-        .award {
-          color: var(--global-theme-color) !important;
-          border: 1px solid var(--global-theme-color);
         }
       }
 
@@ -987,11 +1206,20 @@ footer.sticky-bottom {
           }
 
           &.resource-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 1.625rem;
+            // Athletics capitals sit high within the font's line box.
+            padding: 0.25rem 0.625rem 0;
             color: var(--resource-color);
             background-color: var(--resource-bg);
             border-color: transparent;
             border-radius: 5px;
-            font-weight: 600;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            line-height: 1.4;
+            letter-spacing: 0.02em;
             transition:
               color 0.2s ease,
               background-color 0.2s ease;

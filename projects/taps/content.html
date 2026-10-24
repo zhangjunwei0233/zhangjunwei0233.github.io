@@ -20,7 +20,7 @@
     <div class="prose container blog">
       <p class="section-index">01 / TWO ROUTES</p>
       <h2 id="routes-title">Two distinct abstention paradigms.</h2>
-      <p class="text">Declining to answer is a simple way to avoid a likely hallucination. The design question is who makes the call. <strong>Selective answering</strong> lets the model answer first; an external confidence estimator then keeps or withholds that answer. More recent <strong>Abstention training</strong> teaches the model itself to output either an answer or a refusal such as “I don’t know.”</p>
+      <p class="text">Declining to answer is a simple way to avoid a likely hallucination. The design question is who makes the call. <strong>Abstention training</strong> teaches the model itself to output either an answer or a refusal such as “I don’t know.” <strong>Selective answering</strong> lets the model answer first; an external confidence estimator then keeps or withholds that answer.</p>
     </div>
     <figure class="figure routes-figure">
       <div class="route-panels" aria-label="Two routes to abstention">
@@ -49,11 +49,11 @@
     <div class="prose container blog">
       <p class="section-index">03 / THE KEY FINDING</p>
       <h2 id="finding-title">The performance advantage comes from better answers, not better rejection.</h2>
-      <p class="text">We analyze where the advantage of abstention training comes from. At a fixed coverage <span class="math">c</span>, risk <span class="math">r(c)</span> can fall in only two ways: the model <strong>answers better</strong> (fixing more answers than training breaks) or <strong>rejects better</strong> (withholding answers that would have been wrong). It is like grading a student who may skip questions on an exam: a higher score means they either learned more or skipped more wisely. We split risk exactly into these two parts: the net accuracy gain, <span class="math orange">G<sub>ans</sub></span>, and rejection precision, <span class="math blue">G<sub>dis</sub></span>, the share of withheld answers that would have been wrong.</p>
+      <p class="text">We analyze where the advantage of abstention training comes from. At a fixed coverage <span class="math">c</span>, risk <span class="math">r(c)</span> can fall in only two ways: the model <strong>answers better</strong> (fixing more answers than training breaks) or <strong>rejects better</strong> (withholding answers that would have been wrong). It is like grading a student who may skip questions on an exam: a higher score means they either learned more or skipped more wisely. We split risk exactly into these two parts: the net accuracy gain, <span class="math text-accent">G<sub>ans</sub></span>, and rejection precision, <span class="math text-primary">G<sub>dis</sub></span>, the share of withheld answers that would have been wrong.</p>
     </div>
     <figure class="figure wide-figure"><a href="{{ assets }}/images/sankey_comparison_demo.svg" aria-label="Enlarge the risk decomposition figure"><img src="{{ assets }}/images/sankey_comparison_demo.svg" alt="Paper Figure 1. Left: exact risk decomposition into normalized net accuracy gain and rejection precision. Right: on Qwen2.5-7B-Instruct and TriviaQA at 72.7 percent coverage, semantic entropy has 86.8 percent rejection precision and TruthRL 86.2 percent, while TruthRL gains 6.1 percent from answering and has 16.2 percent risk versus 22.1 percent." width="1500" height="500" loading="lazy"></a><figcaption><strong>Answering and rejecting are different skills.</strong> On Qwen2.5-7B-Instruct / TriviaQA at the same 72.7% coverage, semantic entropy (S.E.) and TruthRL reject with nearly the same precision (86.8% vs. 86.2%). TruthRL’s lower risk comes from its answering gain.</figcaption></figure>
     <div class="prose container blog">
-      <p class="text">A stronger selector closes the <span class="blue">rejection gap</span> fast. Across nine model–dataset settings, mean rejection precision of selective answering rises from 59.47% with Vanilla confidence to 74.84% with P(True) and <strong>84.64%</strong> with semantic entropy, essentially level with TruthRL’s <strong>84.29%</strong>. TruthRL’s <span class="orange">answering gain</span>, meanwhile, is positive in every single setting. Despite its name, then, what sets abstention training apart from strong selective answering is mostly <em>how well it answers</em>, rather than how well it abstains.</p>
+      <p class="text">A stronger selector closes the <span class="text-primary">rejection gap</span> fast. Across nine model–dataset settings, mean rejection precision of selective answering rises from 59.47% with Vanilla confidence to 74.84% with P(True) and <strong>84.64%</strong> with semantic entropy, essentially level with TruthRL’s <strong>84.29%</strong>. TruthRL’s <span class="text-accent">answering gain</span>, meanwhile, is positive in every single setting. Despite its name, then, what sets abstention training apart from strong selective answering is mostly <em>how well it answers</em>, rather than how well it abstains.</p>
       <p class="bridge">What if selective answering had an equally strong answerer?</p>
     </div>
   </section>
@@ -67,11 +67,11 @@
       </div><figcaption>The same post-hoc decision, with a stronger answerer. TAPS adds accuracy training and pairs the trained model with a strong selector; the threshold remains adjustable.</figcaption></figure>
       <div class="method-copy container blog">
         <div class="method-step">
-          <p class="step-label orange"><strong>STAGE 1</strong> · TRAIN FOR ACCURACY</p>
+          <p class="step-label text-accent"><strong>STAGE 1</strong> · TRAIN FOR ACCURACY</p>
           <p class="text">Improve answers with ordinary post-training. We use GRPO with a common outcome reward: +1 for a correct answer, −1 otherwise. There is no abstention objective anywhere.</p>
         </div>
         <div class="method-step">
-          <p class="step-label blue"><strong>STAGE 2</strong> · POST-HOC SELECT</p>
+          <p class="step-label text-primary"><strong>STAGE 2</strong> · POST-HOC SELECT</p>
           <p class="text">Score each answer with an off-the-shelf confidence estimator, such as semantic entropy or a probe on the model’s hidden states. Keep the answer if its score clears τ; otherwise, abstain.</p>
         </div>
         <p class="text">The answerer stays fixed while τ sets coverage. TAPS simply combines two well-developed research fields through a minimal interface, so it is easy to put into real-world use and can benefit from advances in either field, making it a simple, general, and evolving approach.

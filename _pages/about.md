@@ -8,7 +8,7 @@ profile:
   align: right
   image: my_personal_photo.jpg
 
-  image_circular: true # crops the image to make it circular
+  image_circular: false # crops the image to make it circular
   # more_info: >
   #   <p>555 your office number</p>
   #   <p>123 your address street</p>
@@ -36,25 +36,52 @@ During my second year, I explored chip design through the <a href='https://ysyx.
 
 Beyond academics, I enjoy classical music, tinkering with Linux, and discovering new tools and projects on GitHub.
 
-<strong>📖 Education</strong>
+<section class="about-section" aria-labelledby="education-heading">
+  <h2 id="education-heading"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Internships & Education</h2>
+  <div class="about-experience-grid">
+    <section class="about-experience-section" aria-labelledby="internships-heading">
+      <h3 id="internships-heading">Internships</h3>
+      <div class="about-experience-entry">
+        <div class="about-experience-heading">
+          <h4>Meituan Inc.</h4>
+          <p class="about-date">Feb. 2026 – Present</p>
+        </div>
+        <p>Research Intern / RSI Team</p>
+      </div>
+    </section>
+    <section class="about-experience-section" aria-labelledby="education-section-heading">
+      <h3 id="education-section-heading">Education</h3>
+      <div class="about-experience-entry">
+        <div class="about-experience-heading">
+          <h4>University of Chinese Academy of Sciences</h4>
+          <p class="about-date">2023 – 2027 (Expected)</p>
+        </div>
+        <p>B.S. in Computer Science<br>GPA 3.97/4.00 | Rank 1/86</p>
+      </div>
+    </section>
+  </div>
+</section>
 
-- 2023.09 - Present: B.S. in Computer Science, University of Chinese Academy of Sciences
-
-<strong>🥇 Honors and Awards</strong>
-
-{: .awards-list}
-
-- <strong>National Scholarship</strong> (Ministry of Education of P.R. China)
-
-  - November 2024 and October 2025
-
-- <strong>Finalist, Interdisciplinary Contest in Modeling</strong> (Consortium for Mathematics and its Applications)
-
-  - May 2025
-
-- <strong>First Class Academic Scholarship</strong> (University of Chinese Academy of Sciences)
-  - October 2024 and October 2025
-
-<strong>Let's Work Together</strong>
-
-I maintain a <a href="https://zhangjunwei0233.github.io/LearningGuide/">learning website</a> where I share AI learning roadmaps and study notes. Contributions and ideas for collaboration are always welcome!
+<section class="about-section" aria-labelledby="awards-heading">
+  <h2 id="awards-heading"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Honors and Awards</h2>
+  <ul class="about-awards">
+    <li>
+      <p><strong>National Scholarship</strong> <span class="about-detail">(Ministry of Education of P.R. China)</span></p>
+      <p class="about-date">2024, 2025</p>
+    </li>
+    <li>
+      <p>
+        <strong>Finalist, Interdisciplinary Contest in Modeling</strong>
+        <span class="about-detail">(Consortium for Mathematics and its Applications)</span>
+      </p>
+      <p class="about-date">2025</p>
+    </li>
+    <li>
+      <p>
+        <strong>First Class Academic Scholarship</strong>
+        <span class="about-detail">(University of Chinese Academy of Sciences)</span>
+      </p>
+      <p class="about-date">2024, 2025</p>
+    </li>
+  </ul>
+</section>

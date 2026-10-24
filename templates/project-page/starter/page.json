@@ -2,7 +2,7 @@
   "name": "Project",
   "title": "Project title",
   "description": "A short description of the project.",
-  "heading_html": "Project title",
+  "heading_html": "<span class=\"text-primary\">Project</span> title",
   "authors_html": "Author name",
   "navigation": [{ "id": "overview", "label": "Overview" }],
   "navigation_action": { "label": "More Projects", "href": "/projects/" },

@@ -1,0 +1,68 @@
+@font-face {
+  font-family: "Athletics";
+  src: url("fonts/Athletics/Athletics-Regular.woff2") format("woff2");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Athletics";
+  src: url("fonts/Athletics/Athletics-Italic.woff2") format("woff2");
+  font-weight: 400 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Athletics";
+  src: url("fonts/Athletics/Athletics-Medium.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Athletics";
+  src: url("fonts/Athletics/Athletics-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tiempos Text";
+  src: url("fonts/Tiempos/TiemposText-Regular.woff") format("woff");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tiempos Text";
+  src: url("fonts/Tiempos/TiemposText-Italic.woff") format("woff");
+  font-weight: 400 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tiempos Text";
+  src: url("fonts/Tiempos/TiemposText-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clarity Icons";
+  src: url("fonts/FontAwesome/resource-icons.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Maple Mono";
+  src: url("fonts/MapleMono/maple-mono-regular.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --sans: "Athletics", Arial, sans-serif;
+  --serif: "Tiempos Text", Georgia, serif;
+  --mono: "Maple Mono", monospace;
+}

@@ -51,7 +51,7 @@ module ProjectPages
         cards << { 'title' => config.fetch('name'), 'description' => card.fetch('description', config['description']),
                    'img' => image, 'url' => url, 'importance' => card.fetch('order', 0) }
 
-        source_files.concat(%w[page.json content.html README.md].map { |name| (project / name).to_s })
+        source_files.concat(%w[page.json theme.json content.html README.md].map { |name| (project / name).to_s })
         source_files << (project / config['citation']).to_s if config['citation']
       end
 

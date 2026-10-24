@@ -36,6 +36,26 @@ body.sticky-bottom-footer {
   img {
     width: 100%;
   }
+
+  img.profile-portrait {
+    aspect-ratio: 3 / 4;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.about-profile {
+  max-width: 165px;
+}
+
+@media (max-width: 575px) {
+  .profile.about-profile.float-right,
+  .profile.about-profile.float-left {
+    float: none !important;
+    max-width: 135px;
+    margin: 0 auto 1.5rem;
+  }
 }
 
 // TODO: redefine content layout.

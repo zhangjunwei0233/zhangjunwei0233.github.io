@@ -13,6 +13,11 @@ from urllib.parse import quote, unquote, urlsplit
 TEMPLATE = Path(__file__).resolve().parent
 TOKEN = re.compile(r'{{\s*([^{}]+?)\s*}}')
 ICONS = {'book', 'poster', 'quote', 'code'}
+DEFAULT_COLORS = {
+    'primary': '#2a709e',
+    'accent': '#ac522d',
+    'hero_background': '#102d44',
+}
 
 
 def local_file(project, name):
@@ -20,6 +25,30 @@ def local_file(project, name):
     if not path.is_relative_to(project.resolve()) or not path.is_file():
         raise ValueError(f'Missing project file: {name}')
     return path
+
+
+def load_theme(project):
+    if not (project / 'theme.json').exists():
+        return DEFAULT_COLORS.copy()
+    try:
+        theme = json.loads(local_file(project, 'theme.json').read_text())
+    except json.JSONDecodeError as error:
+        raise ValueError(f'theme.json:{error.lineno}:{error.colno}: {error.msg}') from error
+    if not isinstance(theme, dict):
+        raise ValueError('theme.json: expected an object')
+    unknown = theme.keys() - {'colors'}
+    if unknown:
+        raise ValueError(f'theme.json: unknown fields: {", ".join(sorted(unknown))}')
+    colors = theme.get('colors', {})
+    if not isinstance(colors, dict):
+        raise ValueError('theme.json: colors must be an object')
+    unknown = colors.keys() - DEFAULT_COLORS.keys()
+    if unknown:
+        raise ValueError(f'theme.json: unknown colors: {", ".join(sorted(unknown))}')
+    for key, value in colors.items():
+        if not isinstance(value, str) or not re.fullmatch(r'#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?', value):
+            raise ValueError(f'theme.json: colors.{key} must be a hex color (#RGB or #RRGGBB)')
+    return DEFAULT_COLORS | colors
 
 
 def project_url(project, value):
@@ -77,6 +106,9 @@ class PageCheck(HTMLParser):
 def render(project):
     project = project.resolve()
     config = json.loads(local_file(project, 'page.json').read_text())
+    if 'theme' in config:
+        raise ValueError('page.json: move theme settings to theme.json')
+    colors = load_theme(project)
     escape = lambda value: html.escape(str(value), quote=True)
     navigation = config.get('navigation', [])
     nav_html = ''.join(f'<a href="#{escape(item["id"])}"' +
@@ -108,10 +140,6 @@ def render(project):
             links.append(f'<button class="button" type="button" disabled>{glyph}{label}</button>')
         else:
             links.append(f'<a class="button" href="{escape(project_url(project, item["href"]))}">{glyph}{label}</a>')
-    theme = config.get('theme', {})
-    if any(not re.fullmatch(r'[a-z][a-z0-9-]*', key) or not re.fullmatch(r'#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?', value)
-           for key, value in theme.items()):
-        raise ValueError('Theme entries must be CSS variable names and hex colors')
     citation = ''
     if config.get('citation'):
         bibtex = escape(local_file(project, config['citation']).read_text())
@@ -132,14 +160,14 @@ def render(project):
         'title': escape(config['title']), 'description': escape(config.get('description', '')),
         'social_title': escape(config.get('social_title', config['title'])),
         'social_description': escape(config.get('social_description', config.get('description', ''))),
-        'name': escape(config['name']), 'theme_color': escape(theme.get('navy', '#102d44')),
+        'name': escape(config['name']), 'theme_color': escape(colors['hero_background']),
         'first_section': '#' + escape(navigation[0]['id']) if navigation else '#top',
         'navigation': nav_html, 'navigation_action': action_html,
         'heading': config.get('heading_html', escape(config['title'])),
         'authors': '', 'affiliations': '', 'author_notes': '',
         'resources': '<div class="resource-links">' + ''.join(links) + '</div>' if links else '',
         'favicon': f'<link rel="icon" type="image/svg+xml" href="{escape(project_url(project, config["favicon"]))}">' if config.get('favicon') else '',
-        'theme': '<style>:root {' + ''.join(f'--{key}:{value};' for key, value in theme.items()) + '}</style>' if theme else '',
+        'theme': '<style>:root {' + ''.join(f'--{key.replace("_", "-")}:{value};' for key, value in colors.items()) + '}</style>',
         'styles': '\n  '.join(f'<link rel="stylesheet" href="{escape(project_url(project, value))}">' for value in config.get('styles', [])),
         'scripts': '\n  '.join(f'<script defer src="{escape(project_url(project, value))}"></script>' for value in config.get('scripts', [])),
         'content': expand_content(project, local_file(project, 'content.html').read_text()),

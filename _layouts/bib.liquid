@@ -2,31 +2,19 @@
 ---
 <div class="row align-items-center">
   {% if site.enable_publication_thumbnails %}
-    <div class="col-12 col-sm-3 abbr publication-thumbnail">
-      {%- if entry.abbr -%}
-        {%- if site.data.venues[entry.abbr] -%}
-          {% assign venue_style = null %}
-          {% if site.data.venues[entry.abbr].color != blank %}
-            {% assign venue_style = site.data.venues[entry.abbr].color | prepend: 'style="background-color:' | append: '"' %}
-          {%- endif -%}
-          <abbr
-            class="badge rounded w-100"
-            {% if venue_style %}
-              {{ venue_style }}
-            {% endif -%}
-          >
-            {% if site.data.venues[entry.abbr].url %}
-              <a href="{{ site.data.venues[entry.abbr].url }}">{{ entry.abbr }}</a>
-            {% else %}
-              <div>{{- entry.abbr -}}</div>
-            {% endif %}
-          </abbr>
-        {% else %}
-          <abbr class="badge rounded w-100">{{ entry.abbr }}</abbr>
-        {% endif %}
-      {% endif %}
+    <div class="col-12 col-sm-3 publication-thumbnail">
       {% if entry.preview %}
         <div class="publication-preview-frame rounded">
+          {% if entry.abbr %}
+            <span class="publication-venue-ribbon">
+              {% if entry.abbr == 'arXiv' -%}
+                arXiv Preprint
+              {%- else -%}
+                {{- entry.abbr }}
+                {{ entry.year -}}
+              {%- endif %}
+            </span>
+          {% endif %}
           <div class="publication-preview-content">
             {% if entry.preview contains '://' %}
               <img class="preview rounded" src="{{ entry.preview }}" alt="{{ entry.title | escape }}" loading="lazy">
@@ -185,6 +173,7 @@
     {% if entry.month %}
       {% capture entrymonth %}{{ " " }}{{ entry.month | capitalize }}{% endcapture %}
     {% endif %}
+    {% assign entryyear = '' %}
     {% if entry.year %}
       {% capture entryyear %}{{ " " }}{{ entry.year }}{% endcapture %}
     {% endif %}

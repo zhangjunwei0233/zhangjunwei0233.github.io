@@ -10,6 +10,7 @@ _bibliography/papers.bib    论文信息
 _news/                      新闻与公告
 projects/<slug>/            每个项目的配置、正文与素材
   page.json                 标题、作者、资源链接和项目卡片信息
+  theme.json                项目主题色；未设置的颜色使用模板默认值
   content.html              正文的唯一来源
   assets/                   项目专用素材
   ...                       可选的项目专用 CSS、JS、引用文件
@@ -41,7 +42,7 @@ bundle exec jekyll serve
 cp -R templates/project-page/starter projects/my-project
 ```
 
-修改 `projects/my-project/page.json`、`content.html` 和素材即可。项目地址自动成为 `/projects/my-project/`，并自动加入 Projects 页面。
+修改 `projects/my-project/page.json`、`theme.json`、`content.html` 和素材即可。项目地址自动成为 `/projects/my-project/`，并自动加入 Projects 页面。
 
 详细字段和模板约定见 [项目模板说明](templates/project-page/README.md)。
 
