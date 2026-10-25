@@ -1,0 +1,91 @@
+.image-viewer {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  box-sizing: border-box;
+  width: fit-content;
+  height: fit-content;
+  max-width: min(96vw, 1500px);
+  max-height: 92vh;
+  max-height: 92dvh;
+  padding: 46px 24px 24px;
+  border: 0;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 18px 80px rgb(0 0 0 / 25%);
+}
+
+.image-viewer[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-viewer::backdrop {
+  background: rgb(16 45 68 / 60%);
+  backdrop-filter: blur(6px);
+}
+
+.image-viewer > img {
+  display: block;
+  width: min(calc(96vw - 48px), 1452px, calc((92vh - 70px) * var(--image-ratio, 1)));
+  width: min(calc(96vw - 48px), 1452px, calc((92dvh - 70px) * var(--image-ratio, 1)));
+  height: auto;
+  max-width: min(calc(96vw - 48px), 1452px);
+  max-height: calc(92vh - 70px);
+  max-height: calc(92dvh - 70px);
+  min-width: 0;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.image-viewer-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #f0f2f4;
+  color: var(--primary, var(--global-theme-color, #2a709e));
+  font: 400 26px/1 var(--sans);
+  letter-spacing: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.image-viewer-close:focus-visible {
+  outline: 2px solid var(--primary, var(--global-theme-color, #2a709e));
+  outline-offset: 3px;
+}
+
+.image-viewer-open {
+  overflow: hidden;
+}
+
+a[data-image-viewer],
+[data-project-page] figure a:has(img) {
+  cursor: zoom-in;
+}
+
+@media (max-width: 768px) {
+  .image-viewer {
+    padding: 46px 12px 16px;
+    max-height: 90vh;
+    max-height: 90dvh;
+  }
+
+  .image-viewer > img {
+    width: min(calc(96vw - 24px), calc((90vh - 62px) * var(--image-ratio, 1)));
+    width: min(calc(96vw - 24px), calc((90dvh - 62px) * var(--image-ratio, 1)));
+    max-width: calc(96vw - 24px);
+    max-height: calc(90vh - 62px);
+    max-height: calc(90dvh - 62px);
+  }
+}
