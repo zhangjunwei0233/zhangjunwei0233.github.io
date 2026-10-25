@@ -17,20 +17,26 @@
           {% endif %}
           <div class="publication-preview-content">
             {% if entry.preview contains '://' %}
-              <img class="preview rounded" src="{{ entry.preview }}" alt="{{ entry.title | escape }}" loading="lazy">
+              {% assign preview_url = entry.preview %}
             {% else %}
               {% assign entry_path = entry.preview | prepend: '/assets/img/publications/' %}
-              {%
-                include figure.liquid
-                loading="eager"
-                path=entry_path
-                sizes = "200px"
-                class="preview rounded"
-                zoomable=true
-                avoid_scaling=true
-                alt=entry.title
-              %}
+              {% assign preview_url = entry_path | relative_url %}
             {% endif %}
+            <a class="publication-preview-link" href="{{ preview_url | escape }}" data-image-viewer aria-label="Enlarge {{ entry.title | escape }}">
+              {% if entry.preview contains '://' %}
+                <img class="preview rounded" src="{{ preview_url | escape }}" alt="{{ entry.title | escape }}" loading="lazy">
+              {% else %}
+                {%
+                  include figure.liquid
+                  loading="eager"
+                  path=entry_path
+                  sizes = "200px"
+                  class="preview rounded"
+                  avoid_scaling=true
+                  alt=entry.title
+                %}
+              {% endif %}
+            </a>
           </div>
         </div>
       {% endif %}

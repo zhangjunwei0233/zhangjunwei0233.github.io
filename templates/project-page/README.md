@@ -25,6 +25,7 @@ bundle exec jekyll serve
 | `jekyll.rb`                                                      | 调用渲染器、生成卡片数据、阻止源码发布       |
 | `page.html`                                                      | 共享页面骨架                                 |
 | `fonts.css`、`style.css`、`site.js`、`fonts/`、`glass-grain.svg` | 共享运行时资源                               |
+| `image-viewer.css`、`image-viewer.js`                            | 论文图和项目图共用的大图面板                 |
 | `projects/<slug>/`                                               | 实际项目源码                                 |
 | `_site/projects/<slug>/index.html`                               | Jekyll 生成的页面                            |
 
@@ -87,6 +88,7 @@ bundle exec jekyll serve
 - `{{ assets }}` 展开为项目自己的 `assets` 目录。
 - `{{ include:assets/figure.svg }}` 内嵌项目文件，用于 SVG 等素材。
 - 用链接包裹图片可启用放大，参照 `starter/content.html`。
+- 论文缩略图和项目页共用 `image-viewer.css`、`image-viewer.js` 的大图面板，支持关闭按钮、Esc 和点击背景关闭；图片按原始比例展示。
 - TAPS 的图表数据、交互和专用排版放在 `projects/taps/`；共享模板不包含研究数据或 TAPS 专用布局。
 
 ## 校验

@@ -12,12 +12,14 @@
   {{ favicon }}
   <link rel="stylesheet" href="{{ template }}/fonts.css">
   <link rel="stylesheet" href="{{ template }}/style.css">
+  <link rel="stylesheet" href="{{ template }}/image-viewer.css">
   {{ theme }}
   {{ styles }}
+  <script defer src="{{ template }}/image-viewer.js"></script>
   <script defer src="{{ template }}/site.js"></script>
   {{ scripts }}
 </head>
-<body>
+<body data-project-page>
 <a class="skip-link" href="{{ first_section }}">Skip to the story</a>
 <header class="site-header">
   <div class="header-main">

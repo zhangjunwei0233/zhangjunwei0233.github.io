@@ -98,38 +98,6 @@
     syncNavigation();
   }
 
-  const viewer = document.createElement('dialog');
-  viewer.className = 'image-viewer';
-  viewer.setAttribute('aria-label', 'Enlarged figure');
-  const enlargedImage = document.createElement('img');
-  const closeViewer = document.createElement('button');
-  closeViewer.className = 'image-viewer-close';
-  closeViewer.type = 'button';
-  closeViewer.setAttribute('aria-label', 'Close enlarged figure');
-  closeViewer.textContent = '×';
-  viewer.append(enlargedImage, closeViewer);
-  document.body.appendChild(viewer);
-  closeViewer.addEventListener('click', () => viewer.close());
-  viewer.addEventListener('click', event => {
-    if (event.target === viewer) viewer.close();
-  });
-  viewer.addEventListener('close', () => {
-    document.documentElement.classList.remove('image-viewer-open');
-    enlargedImage.removeAttribute('src');
-  });
-  for (const link of document.querySelectorAll('figure a:has(img)')) {
-    link.addEventListener('click', event => {
-      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      if (!viewer.showModal) return;
-      event.preventDefault();
-      const image = link.querySelector('img');
-      enlargedImage.src = link.href;
-      enlargedImage.alt = image.alt;
-      viewer.showModal();
-      document.documentElement.classList.add('image-viewer-open');
-    });
-  }
-
   const copy = document.getElementById('copy-citation');
   if (copy) {
     copy.hidden = false;

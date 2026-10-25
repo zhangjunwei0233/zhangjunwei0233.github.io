@@ -210,13 +210,3 @@ html { scroll-behavior: auto; }
 .nav-indicator { transition: none; }
 }
 #copy-status:empty { display: none; }
-.image-viewer { position: fixed; inset: 0; margin: auto; width: min(96vw, 1500px); height: 92vh; max-width: none; max-height: none; padding: 46px 24px 24px; border: 0; border-radius: 10px; background: white; box-shadow: 0 18px 80px rgb(0 0 0 / .25); }
-.image-viewer[open] { display: flex; align-items: center; justify-content: center; }
-.image-viewer::backdrop { background: rgb(16 45 68 / .6); backdrop-filter: blur(6px); }
-.image-viewer > img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.image-viewer-close { position: absolute; top: 10px; right: 12px; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 50%; background: #f0f2f4; color: var(--primary); font: 400 26px/1 var(--sans); letter-spacing: 0; box-shadow: none; }
-.image-viewer-open { overflow: hidden; }
-figure a:has(img) { cursor: zoom-in; }
-@media (max-width: 600px) {
-.image-viewer { padding: 46px 12px 16px; height: 90vh; }
-}
